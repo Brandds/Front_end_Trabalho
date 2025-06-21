@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locadora de Veículos</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1>Locadora de Veículos</h1>
+    <nav>
+      <button id="nav-veiculos" class="active">Veículos</button>
+      <button id="nav-clientes">Clientes</button>
+      <button id="nav-alugueis">Aluguéis</button>
+      <button id="nav-fabricantes">Fabricantes</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="section-veiculos" class="active">
+      <h2>Gerenciar Veículos</h2>
+      <div class="filters">
+        <input type="text" id="filtro-veiculo-modelo" placeholder="Filtrar por modelo...">
+        <input type="number" id="filtro-veiculo-fabricanteId" placeholder="Filtrar por ID do fabricante...">
+        <button id="btn-filtrar-veiculos" class="btn-filter">Filtrar</button>
+        <button id="btn-novo-veiculo" class="btn-new">Novo Veículo</button>
+      </div>
+      <table id="table-veiculos">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Modelo</th>
+            <th>Ano</th>
+            <th>Fabricante</th>
+            <th>Quilometragem</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="section-clientes">
+      <h2>Gerenciar Clientes</h2>
+      <div class="filters">
+        <input type="text" id="filtro-cliente-nome" placeholder="Filtrar por nome...">
+        <input type="text" id="filtro-cliente-email" placeholder="Filtrar por email...">
+        <button id="btn-filtrar-clientes" class="btn-filter">Filtrar</button>
+        <button id="btn-novo-cliente" class="btn-new">Novo Cliente</button>
+      </div>
+      <table id="table-clientes">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="section-alugueis">
+      <h2>Visualizar Aluguéis</h2>
+      <div class="filters">
+        <button id="btn-novo-aluguel" class="btn-new">Novo Aluguel</button>
+      </div>
+      <table id="table-alugueis">
+        <thead>
+          <tr>
+            <th>ID Aluguel</th>
+            <th>Cliente</th>
+            <th>Veículo</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>
+            <th>Valor Total</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="section-fabricantes">
+      <h2>Gerenciar Fabricantes</h2>
+      <div class="filters">
+        <button id="btn-novo-fabricante" class="btn-new">Novo Fabricante</button>
+      </div>
+      <table id="table-fabricantes">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <dialog id="modal-veiculo">
+    <form id="form-veiculo">
+      <h3 id="modal-veiculo-title">Novo Veículo</h3>
+      <input type="hidden" id="veiculo-id">
+      <label for="veiculo-modelo">Modelo:</label>
+      <input type="text" id="veiculo-modelo" required>
+      <label for="veiculo-ano">Ano:</label>
+      <input type="number" id="veiculo-ano" required>
+      <label for="veiculo-km">Quilometragem:</label>
+      <input type="number" id="veiculo-km" required>
+      <label for="veiculo-fabricante-id">ID do Fabricante:</label>
+      <input type="number" id="veiculo-fabricante-id" required>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" data-modal-id="modal-veiculo">Cancelar</button>
+        <button type="submit" class="btn-save">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="modal-cliente">
+    <form id="form-cliente">
+      <h3 id="modal-cliente-title">Novo Cliente</h3>
+      <input type="hidden" id="cliente-id">
+      <label for="cliente-nome">Nome:</label>
+      <input type="text" id="cliente-nome" required>
+      <label for="cliente-email">Email:</label>
+      <input type="email" id="cliente-email" required>
+      <label for="cliente-telefone">Telefone:</label>
+      <input type="tel" id="cliente-telefone" required>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" data-modal-id="modal-cliente">Cancelar</button>
+        <button type="submit" class="btn-save">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="modal-aluguel">
+    <form id="form-aluguel">
+      <h3 id="modal-aluguel-title">Novo Aluguel</h3>
+      <input type="hidden" id="aluguel-id">
+      <label for="aluguel-cliente">Cliente:</label>
+      <select id="aluguel-cliente" required></select>
+      <label for="aluguel-veiculo">Veículo:</label>
+      <select id="aluguel-veiculo" required></select>
+      <label for="aluguel-data-inicio">Data de Início:</label>
+      <input type="date" id="aluguel-data-inicio" required>
+      <label for="aluguel-data-fim">Data de Fim:</label>
+      <input type="date" id="aluguel-data-fim" required>
+      <label for="aluguel-valor">Valor Total (R$):</label>
+      <input type="number" step="0.01" id="aluguel-valor" required>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" data-modal-id="modal-aluguel">Cancelar</button>
+        <button type="submit" class="btn-save">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="modal-fabricante">
+    <form id="form-fabricante">
+      <h3 id="modal-fabricante-title">Novo Fabricante</h3>
+      <input type="hidden" id="fabricante-id">
+      <label for="fabricante-nome">Nome:</label>
+      <input type="text" id="fabricante-nome" required>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" data-modal-id="modal-fabricante">Cancelar</button>
+        <button type="submit" class="btn-save">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
